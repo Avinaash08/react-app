@@ -6,7 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          Hello Indium test-1
+          Hello Indium test
         </p>
        
       </header>
