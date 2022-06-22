@@ -43,7 +43,7 @@ jobs:
           echo "     listen [::]:80;" >> ${PR}.conf
           echo "     server_name ${PR}.com www.${PR}.com;" >> ${PR}.conf
 
-          echo "     root /home/ec2-user/${PR}/build;" >> ${PR}.conf
+          echo "     root /home/ubuntu/${PR}/build;" >> ${PR}.conf
 
           echo "     index index.html index.htm;" >> ${PR}.conf
 
@@ -62,14 +62,14 @@ jobs:
         key: ${{ secrets.AWS_PRIVATE_KEY }}
         connect_timeout: 10s
         first_ssh: |
-          rm -rf /home/ec2-user/${PR} 
-          mkdir -p /home/ec2-user/${PR}
-          mkdir -p /home/ec2-user/nginxconf/
+          rm -rf /home/ubuntu/${PR} 
+          mkdir -p /home/ubuntu/${PR}
+          mkdir -p /home/ubuntu/nginxconf/
         scp: |
-          './${PR}.conf' => /home/ec2-user/nginxconf/
-          './build.zip' => /home/ec2-user/${PR}/
+          './${PR}.conf' => /home/ubuntu/nginxconf/
+          './build.zip' => /home/ubuntu/${PR}/
         last_ssh: |
           echo $LASTSSH  
-          unzip /home/ec2-user/${PR}/build.zip -d /home/ec2-user/${PR}/
-          mv /home/ec2-user/${PR}/build.zip /tmp/${PR}.zip
+          unzip /home/ubuntu/${PR}/build.zip -d /home/ubuntu/${PR}/
+          mv /home/ubuntu/${PR}/build.zip /tmp/${PR}.zip
           ls -ll /tmp/ 
